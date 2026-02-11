@@ -134,6 +134,67 @@ h2{
   margin-bottom:70px;
 }
 
+  /* ================= CASE STUDY ================= */
+
+.case-card{
+  display:grid;
+  grid-template-columns:1.2fr 0.8fr;
+  gap:60px;
+  background:var(--card);
+  padding:60px;
+  border-radius:20px;
+  margin-top:60px;
+}
+
+.case-left h3{
+  margin-bottom:15px;
+}
+
+.case-left p{
+  color:var(--muted);
+  line-height:1.6;
+}
+
+.case-left ul{
+  margin-top:15px;
+  color:var(--muted);
+  line-height:1.8;
+  padding-left:20px;
+}
+
+.case-right{
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  gap:40px;
+}
+
+.metric{
+  text-align:center;
+}
+
+.metric .number{
+  font-size:2rem;
+  font-weight:bold;
+  background:linear-gradient(135deg,var(--accent1),var(--accent2));
+  -webkit-background-clip:text;
+  -webkit-text-fill-color:transparent;
+}
+
+.metric .label{
+  display:block;
+  margin-top:10px;
+  color:var(--muted);
+  font-size:0.95rem;
+}
+
+/* Responsive */
+@media(max-width:900px){
+  .case-card{
+    grid-template-columns:1fr;
+  }
+}
+
 /* ================= WORKFLOW ================= */
 
 .timeline{
@@ -240,6 +301,55 @@ footer{
     and coaches who want faster lead response, more booked appointments, and less manual work.
   </p>
   <a href="#contact" class="cta">Book a Strategy Call</a>
+</section>
+
+  <!-- CASE STUDY -->
+<section id="case-study">
+  <div class="container">
+    <h2>Case Study: Local Service Business Automation</h2>
+
+    <div class="case-card">
+      <div class="case-left">
+        <h3>The Problem</h3>
+        <p>
+          A local home service business was missing inbound calls and responding to Facebook leads
+          manually — often hours later. Leads were going cold before follow-up.
+        </p>
+
+        <h3 style="margin-top:30px;">The System Built</h3>
+        <ul>
+          <li>✔ Missed Call Text-Back Automation</li>
+          <li>✔ Instant Facebook Lead Form Response</li>
+          <li>✔ Smart Booking Link with Reminder Sequence</li>
+          <li>✔ Automated Pipeline Movement</li>
+        </ul>
+
+        <h3 style="margin-top:30px;">The Result</h3>
+        <p>
+          Lead response time reduced to under 60 seconds.
+          Show-up rates improved due to structured reminders.
+          Manual follow-up work was almost completely eliminated.
+        </p>
+      </div>
+
+      <div class="case-right">
+        <div class="metric">
+          <span class="number">60s</span>
+          <span class="label">Average Response Time</span>
+        </div>
+
+        <div class="metric">
+          <span class="number">+35%</span>
+          <span class="label">Increase in Booked Appointments</span>
+        </div>
+
+        <div class="metric">
+          <span class="number">↓ Manual Work</span>
+          <span class="label">Automation Replaced Daily Follow-Ups</span>
+        </div>
+      </div>
+    </div>
+  </div>
 </section>
 
 <!-- PROCESS -->
