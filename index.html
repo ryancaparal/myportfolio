@@ -7,7 +7,8 @@
 
 <style>
 :root{
-  --bg:#050914;
+  --bg:#060b16;
+  --card:#0f172a;
   --text:#f1f5f9;
   --muted:#94a3b8;
   --accent1:#22c55e;
@@ -18,7 +19,8 @@
   margin:0;
   padding:0;
   box-sizing:border-box;
-  font-family:system-ui, sans-serif;
+  font-family:system-ui,-apple-system,BlinkMacSystemFont,sans-serif;
+  scroll-behavior:smooth;
 }
 
 body{
@@ -27,7 +29,37 @@ body{
   overflow-x:hidden;
 }
 
-/* 🔥 CINEMATIC HERO */
+/* ================= NAVBAR ================= */
+
+.navbar{
+  position:fixed;
+  top:0;
+  left:0;
+  width:100%;
+  padding:20px 40px;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  background:rgba(6,11,22,0.7);
+  backdrop-filter:blur(10px);
+  z-index:1000;
+}
+
+.navbar a{
+  color:var(--text);
+  text-decoration:none;
+  margin-left:25px;
+  font-size:0.95rem;
+  opacity:0.8;
+  transition:0.3s;
+}
+
+.navbar a:hover{
+  opacity:1;
+}
+
+/* ================= HERO ================= */
+
 .hero{
   height:100vh;
   display:flex;
@@ -35,140 +67,154 @@ body{
   justify-content:center;
   align-items:center;
   text-align:center;
+  padding:0 20px;
   position:relative;
-  overflow:hidden;
 }
 
 .hero::before{
   content:"";
   position:absolute;
-  width:1200px;
-  height:1200px;
-  background:radial-gradient(circle, rgba(34,197,94,0.25), transparent 70%);
-  animation:floatHero 12s infinite alternate ease-in-out;
+  width:800px;
+  height:800px;
+  background:radial-gradient(circle, rgba(34,197,94,0.15), transparent 70%);
+  animation:floatGlow 10s ease-in-out infinite alternate;
   z-index:-1;
 }
 
-@keyframes floatHero{
-  from{ transform:translate(-100px,-100px);}
-  to{ transform:translate(200px,150px);}
+@keyframes floatGlow{
+  from{transform:translate(-80px,-60px);}
+  to{transform:translate(80px,60px);}
 }
 
 .hero h1{
-  font-size:3.5rem;
-  margin-bottom:20px;
-  background:linear-gradient(90deg,var(--accent1),var(--accent2));
-  -webkit-background-clip:text;
-  -webkit-text-fill-color:transparent;
+  font-size:3.2rem;
+  max-width:900px;
+  margin-bottom:25px;
+  line-height:1.1;
 }
 
 .hero p{
-  max-width:750px;
+  max-width:700px;
   color:var(--muted);
-  font-size:1.2rem;
+  font-size:1.15rem;
+  line-height:1.6;
 }
 
-/* 🔥 Dynamic Glow Button */
 .cta{
   margin-top:40px;
-  padding:16px 36px;
+  padding:16px 40px;
   border-radius:50px;
   font-weight:600;
   text-decoration:none;
   color:#001b14;
-  background:linear-gradient(90deg,var(--accent1),var(--accent2));
-  position:relative;
-  overflow:hidden;
-  transition:0.3s;
-}
-
-.cta::before{
-  content:"";
-  position:absolute;
-  inset:0;
-  background:linear-gradient(120deg,transparent,rgba(255,255,255,0.4),transparent);
-  transform:translateX(-100%);
-}
-
-.cta:hover::before{
-  transform:translateX(100%);
-  transition:0.8s;
+  background:linear-gradient(135deg,var(--accent1),var(--accent2));
+  display:inline-block;
+  transition:all 0.3s ease;
 }
 
 .cta:hover{
-  transform:translateY(-4px);
-  box-shadow:0 15px 35px rgba(34,197,94,0.4);
+  transform:translateY(-3px);
+  box-shadow:0 12px 30px rgba(34,197,94,0.35);
 }
 
-/* SECTION */
+/* ================= SECTIONS ================= */
+
 section{
   padding:120px 20px;
-  max-width:1200px;
+}
+
+.container{
+  max-width:1000px;
   margin:auto;
 }
 
 h2{
   text-align:center;
-  font-size:2.4rem;
-  margin-bottom:80px;
+  font-size:2.3rem;
+  margin-bottom:70px;
 }
 
-/* 🔥 HORIZONTAL SVG WORKFLOW */
-.workflow-container{
-  overflow-x:auto;
+/* ================= WORKFLOW ================= */
+
+.timeline{
+  position:relative;
+  max-width:800px;
+  margin:auto;
 }
 
-svg{
-  width:1200px;
-  height:200px;
+.timeline::before{
+  content:"";
+  position:absolute;
+  left:30px;
+  top:0;
+  width:2px;
+  height:100%;
+  background:linear-gradient(var(--accent1),var(--accent2));
+  opacity:0.3;
 }
 
-.node{
-  fill:#0f172a;
-  stroke:#22c55e;
-  stroke-width:2;
-  rx:25;
+.step{
+  display:flex;
+  align-items:flex-start;
+  margin-bottom:70px;
+  opacity:0;
+  transform:translateY(40px);
+  transition:all 0.8s ease;
 }
 
-.node-text{
-  fill:#f1f5f9;
-  font-size:14px;
-  text-anchor:middle;
-  dominant-baseline:middle;
+.step.visible{
+  opacity:1;
+  transform:translateY(0);
 }
 
-/* Animated line */
-.path{
-  fill:none;
-  stroke:url(#gradientLine);
-  stroke-width:3;
-  stroke-dasharray:8 6;
-  animation:moveLine 3s linear infinite;
+.circle{
+  min-width:60px;
+  height:60px;
+  border-radius:50%;
+  background:linear-gradient(135deg,var(--accent1),var(--accent2));
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-weight:bold;
+  margin-right:30px;
+  color:#001b14;
 }
 
-@keyframes moveLine{
-  to{ stroke-dashoffset:-28;}
+.content h3{
+  margin-bottom:10px;
+  font-size:1.2rem;
 }
 
-/* 🔥 MICRO INTERACTIONS */
+.content p{
+  color:var(--muted);
+  line-height:1.6;
+}
+
+/* ================= SERVICES ================= */
+
+.grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+  gap:40px;
+}
+
 .card{
-  background:#0f172a;
+  background:var(--card);
   padding:40px;
-  border-radius:20px;
+  border-radius:18px;
   transition:0.4s;
-  text-align:center;
-  cursor:pointer;
 }
 
 .card:hover{
-  transform:translateY(-10px) scale(1.03);
-  box-shadow:0 20px 40px rgba(0,0,0,0.6);
-  border:1px solid rgba(34,197,94,0.4);
+  transform:translateY(-8px);
+  box-shadow:0 20px 40px rgba(0,0,0,0.5);
 }
+
+/* ================= FOOTER ================= */
 
 footer{
   text-align:center;
-  padding:60px;
+  padding:80px 20px;
   color:var(--muted);
 }
 </style>
@@ -176,74 +222,108 @@ footer{
 
 <body>
 
-<!-- 🔥 HERO -->
+<!-- NAVBAR -->
+<div class="navbar">
+  <div><strong>Ryan Caparal</strong></div>
+  <div>
+    <a href="#process">Process</a>
+    <a href="#services">Services</a>
+    <a href="#contact">Contact</a>
+  </div>
+</div>
+
+<!-- HERO -->
 <section class="hero">
-  <h1>Automation Systems That Convert</h1>
+  <h1>Automation Systems That Capture, Follow Up, and Book Clients Automatically</h1>
   <p>
-    I design structured GoHighLevel workflows that instantly respond to leads,
-    book appointments automatically, and create predictable revenue systems.
+    I build structured GoHighLevel automation systems for local service businesses 
+    and coaches who want faster lead response, more booked appointments, and less manual work.
   </p>
   <a href="#contact" class="cta">Book a Strategy Call</a>
 </section>
 
-<!-- 🔥 WORKFLOW -->
-<section>
-  <h2>Example Automation Workflow</h2>
-  <div class="workflow-container">
-    <svg viewBox="0 0 1200 200">
+<!-- PROCESS -->
+<section id="process">
+  <div class="container">
+    <h2>How Your Automation System Works</h2>
 
-      <defs>
-        <linearGradient id="gradientLine" x1="0%" y1="0%" x2="100%" y2="0%">
-          <stop offset="0%" stop-color="#22c55e"/>
-          <stop offset="100%" stop-color="#06b6d4"/>
-        </linearGradient>
-      </defs>
+    <div class="timeline">
 
-      <!-- Connecting Line -->
-      <path class="path" d="M150 100 L1050 100" />
+      <div class="step">
+        <div class="circle">1</div>
+        <div class="content">
+          <h3>Lead Comes In</h3>
+          <p>Missed call, website form, or Facebook lead is captured instantly inside GoHighLevel.</p>
+        </div>
+      </div>
 
-      <!-- Nodes -->
-      <rect class="node" x="50" y="60" width="200" height="80"/>
-      <text class="node-text" x="150" y="100">Missed Call</text>
+      <div class="step">
+        <div class="circle">2</div>
+        <div class="content">
+          <h3>Instant Follow-Up</h3>
+          <p>Automated SMS and email respond within seconds — increasing reply rates dramatically.</p>
+        </div>
+      </div>
 
-      <rect class="node" x="300" y="60" width="200" height="80"/>
-      <text class="node-text" x="400" y="100">Instant SMS</text>
+      <div class="step">
+        <div class="circle">3</div>
+        <div class="content">
+          <h3>Booking Trigger</h3>
+          <p>Prospects are guided directly to your calendar with automated reminders.</p>
+        </div>
+      </div>
 
-      <rect class="node" x="550" y="60" width="200" height="80"/>
-      <text class="node-text" x="650" y="100">Booking Link</text>
+      <div class="step">
+        <div class="circle">4</div>
+        <div class="content">
+          <h3>Reminder Sequence</h3>
+          <p>Structured follow-up logic reduces no-shows and keeps opportunities warm.</p>
+        </div>
+      </div>
 
-      <rect class="node" x="800" y="60" width="200" height="80"/>
-      <text class="node-text" x="900" y="100">Reminder Sequence</text>
+      <div class="step">
+        <div class="circle">5</div>
+        <div class="content">
+          <h3>Pipeline Updates Automatically</h3>
+          <p>Every action updates your sales pipeline — giving you full visibility without manual tracking.</p>
+        </div>
+      </div>
 
-      <rect class="node" x="1050" y="60" width="200" height="80"/>
-      <text class="node-text" x="1150" y="100">Pipeline Update</text>
-
-    </svg>
-  </div>
-</section>
-
-<!-- 🔥 MICRO INTERACTION SECTION -->
-<section>
-  <h2>What This System Does</h2>
-  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:40px;">
-    <div class="card">
-      <h3>Responds in Seconds</h3>
-      <p>No more waiting hours to contact leads.</p>
-    </div>
-    <div class="card">
-      <h3>Books Automatically</h3>
-      <p>Guides prospects directly to your calendar.</p>
-    </div>
-    <div class="card">
-      <h3>Follows Up Consistently</h3>
-      <p>Structured reminder logic reduces no-shows.</p>
     </div>
   </div>
 </section>
 
+<!-- SERVICES -->
+<section id="services">
+  <div class="container">
+    <h2>Services</h2>
+
+    <div class="grid">
+      <div class="card">
+        <h3>Missed Call Text Back</h3>
+        <p>Turn missed calls into booked appointments automatically.</p>
+      </div>
+
+      <div class="card">
+        <h3>Lead Nurture Sequences</h3>
+        <p>Structured SMS & email follow-ups that convert cold leads into clients.</p>
+      </div>
+
+      <div class="card">
+        <h3>Pipeline Automation</h3>
+        <p>Automatic opportunity movement and task creation inside GoHighLevel.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
 <section id="contact">
-  <h2>Let’s Build Your Automation System</h2>
-  <div style="text-align:center;">
+  <div class="container" style="text-align:center;">
+    <h2>Let’s Build Your Automation System</h2>
+    <p style="color:var(--muted); margin-bottom:40px;">
+      If you're running a local service business or coaching program and want predictable lead handling, let's talk.
+    </p>
     <a href="#" class="cta">Schedule a Call</a>
   </div>
 </section>
@@ -251,6 +331,22 @@ footer{
 <footer>
 © 2026 Ryan Caparal – GoHighLevel Automations
 </footer>
+
+<script>
+const steps = document.querySelectorAll('.step');
+
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(entry => {
+    if(entry.isIntersecting){
+      entry.target.classList.add('visible');
+    }
+  });
+},{
+  threshold:0.2
+});
+
+steps.forEach(step => observer.observe(step));
+</script>
 
 </body>
 </html>
