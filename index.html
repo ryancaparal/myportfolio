@@ -11,14 +11,14 @@
   --text: #f1f5f9;
   --muted: #94a3b8;
   --accent: #22c55e;
-  --glass: rgba(255,255,255,0.06);
+  --glass: rgba(255,255,255,0.05);
 }
 
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: system-ui, -apple-system, sans-serif;
+  font-family: system-ui, sans-serif;
 }
 
 body {
@@ -27,25 +27,25 @@ body {
   overflow-x: hidden;
 }
 
-/* 🔥 Animated Background Glow */
+/* Animated Glow */
 body::before {
   content: "";
   position: fixed;
-  width: 800px;
-  height: 800px;
-  background: radial-gradient(circle, rgba(34,197,94,0.25), transparent 70%);
+  width: 900px;
+  height: 900px;
+  background: radial-gradient(circle, rgba(34,197,94,0.2), transparent 70%);
   top: -200px;
   left: -200px;
-  animation: floatGlow 12s infinite alternate ease-in-out;
+  animation: floatGlow 14s infinite alternate ease-in-out;
   z-index: -1;
 }
 
 @keyframes floatGlow {
   from { transform: translate(0,0); }
-  to { transform: translate(200px,150px); }
+  to { transform: translate(250px,180px); }
 }
 
-/* 🔥 Floating Navbar */
+/* Floating Navbar */
 .navbar {
   position: fixed;
   top: 20px;
@@ -55,12 +55,11 @@ body::before {
   max-width: 1100px;
   background: var(--glass);
   backdrop-filter: blur(12px);
-  border: 1px solid rgba(255,255,255,0.1);
+  border: 1px solid rgba(255,255,255,0.08);
   border-radius: 14px;
   padding: 14px 30px;
   display: flex;
   justify-content: space-between;
-  align-items: center;
   z-index: 1000;
 }
 
@@ -79,11 +78,17 @@ body::before {
 section {
   max-width: 1100px;
   margin: auto;
-  padding: 120px 20px;
+  padding: 140px 20px;
+  position: relative;
+}
+
+.parallax {
+  transform: translateY(0);
+  transition: transform 0.1s linear;
 }
 
 .hero {
-  padding-top: 180px;
+  padding-top: 200px;
   text-align: center;
 }
 
@@ -119,12 +124,11 @@ section {
 h2 {
   text-align: center;
   font-size: 2.2rem;
-  margin-bottom: 60px;
+  margin-bottom: 80px;
 }
 
 .grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
   gap: 30px;
 }
 
@@ -133,25 +137,53 @@ h2 {
   border: 1px solid rgba(255,255,255,0.08);
   padding: 30px;
   border-radius: 16px;
-  transition: 0.4s;
 }
 
-.card:hover {
-  transform: translateY(-8px);
-  border-color: rgba(34,197,94,0.4);
+/* 🔥 Workflow Diagram */
+.workflow {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 30px;
 }
 
-.card h3 {
-  margin-bottom: 12px;
+.node {
+  background: var(--glass);
+  padding: 20px 40px;
+  border-radius: 40px;
+  border: 1px solid rgba(255,255,255,0.1);
+  position: relative;
+  animation: fadeUp 1s ease forwards;
+  opacity: 0;
 }
 
-.card p {
-  color: var(--muted);
+.node:nth-child(1) { animation-delay: 0.2s; }
+.node:nth-child(2) { animation-delay: 0.4s; }
+.node:nth-child(3) { animation-delay: 0.6s; }
+.node:nth-child(4) { animation-delay: 0.8s; }
+.node:nth-child(5) { animation-delay: 1s; }
+
+@keyframes fadeUp {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
 }
 
+.connector {
+  width: 2px;
+  height: 40px;
+  background: linear-gradient(to bottom, transparent, var(--accent), transparent);
+}
+
+/* Footer */
 footer {
   text-align: center;
-  padding: 50px;
+  padding: 60px;
   color: var(--muted);
 }
 </style>
@@ -162,69 +194,59 @@ footer {
 <div class="navbar">
   <strong>Ryan Caparal</strong>
   <div>
-    <a href="#automations">Automations</a>
-    <a href="#projects">Projects</a>
+    <a href="#workflow">Workflow</a>
     <a href="case-study.html">Case Study</a>
     <a href="#contact">Contact</a>
   </div>
 </div>
 
-<section class="hero">
-  <h1>GoHighLevel Automation Systems<br>For Local Service Businesses</h1>
+<section class="hero parallax">
+  <h1>Automation Systems That Convert</h1>
   <p>
-    I build automation systems that respond instantly, book appointments automatically,
-    and follow up consistently — so you never lose another lead.
+    I build structured GoHighLevel automation workflows that turn missed calls and new leads
+    into predictable booked appointments.
   </p>
   <a href="#contact" class="cta">Book a Strategy Call</a>
 </section>
 
-<section id="automations">
-  <h2>Automation Systems</h2>
-  <div class="grid">
-    <div class="card">
-      <h3>Missed Call Recovery</h3>
-      <p>Instant SMS sent after missed calls to recover lost opportunities.</p>
-    </div>
-    <div class="card">
-      <h3>Lead Capture & Routing</h3>
-      <p>Forms and triggers that respond in seconds and assign leads properly.</p>
-    </div>
-    <div class="card">
-      <h3>Booking & Reminder Workflows</h3>
-      <p>Calendar automation with SMS/email reminders to reduce no-shows.</p>
-    </div>
+<section id="workflow">
+  <h2>Example Workflow System</h2>
+
+  <div class="workflow">
+    <div class="node">Missed Call Trigger</div>
+    <div class="connector"></div>
+    <div class="node">Instant SMS Response</div>
+    <div class="connector"></div>
+    <div class="node">Booking Link Sent</div>
+    <div class="connector"></div>
+    <div class="node">Reminder Sequence</div>
+    <div class="connector"></div>
+    <div class="node">Pipeline Auto-Update</div>
   </div>
 </section>
 
-<section id="projects">
-  <h2>Featured Project</h2>
-  <div class="grid">
-    <div class="card">
-      <h3>Local Clinic Automation System</h3>
-      <p>Missed call → SMS → Booking → Reminder sequence fully automated.</p>
-      <br>
-      <a href="case-study.html" class="cta">View Detailed Case Study</a>
-    </div>
-  </div>
-</section>
-
-<section id="contact">
+<section id="contact" class="parallax">
   <h2>Let’s Build Your Automation System</h2>
-  <div class="grid">
-    <div class="card">
-      <h3>Book a Call</h3>
-      <p>Add your booking link here.</p>
-    </div>
-    <div class="card">
-      <h3>Email</h3>
-      <p>yourname@email.com</p>
-    </div>
+  <div class="card">
+    <p>Add your booking link here.</p>
   </div>
 </section>
 
 <footer>
   © 2026 Ryan Caparal – GoHighLevel Automations
 </footer>
+
+<script>
+/* 🔥 Subtle Parallax */
+window.addEventListener("scroll", function () {
+  const parallax = document.querySelectorAll(".parallax");
+  let scrollY = window.scrollY;
+
+  parallax.forEach(section => {
+    section.style.transform = `translateY(${scrollY * -0.05}px)`;
+  });
+});
+</script>
 
 </body>
 </html>
