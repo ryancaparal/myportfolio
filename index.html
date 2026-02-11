@@ -317,7 +317,39 @@ h2{
   font-weight:500;
 }
 
+.project-card{
+  opacity:0;
+  transform:translateY(40px);
+  transition:all 0.8s ease;
+}
 
+.project-card.visible{
+  opacity:1;
+  transform:translateY(0);
+}
+
+.expand-btn{
+  margin-top:15px;
+  background:none;
+  border:none;
+  color:var(--accent1);
+  font-size:0.9rem;
+  cursor:pointer;
+  padding:0;
+}
+
+.expand-content{
+  max-height:0;
+  overflow:hidden;
+  transition:max-height 0.5s ease;
+  color:var(--muted);
+  font-size:0.9rem;
+}
+
+.project-card.active .expand-content{
+  max-height:200px;
+  margin-top:15px;
+}
 
 /* ================= SERVICES ================= */
 
@@ -402,12 +434,12 @@ footer{
 
       <div class="case-right">
         <div class="metric">
-          <span class="number">60s</span>
+          <span class="number" data-target="60">0</span><span>s</span>
           <span class="label">Average Response Time</span>
         </div>
 
         <div class="metric">
-          <span class="number">+35%</span>
+          <span class="number" data-target="35">0</span><span>%</span>
           <span class="label">Increase in Booked Appointments</span>
         </div>
 
@@ -497,6 +529,17 @@ footer{
         </p>
       </div>
 
+      <button class="expand-btn">View Full Breakdown</button>
+
+<div class="expand-content">
+  <p><strong>Workflow Logic:</strong></p>
+  <p>
+    Trigger → Condition check → SMS sequence → Wait logic → 
+    Booking link → Reminder flow → Pipeline stage movement → Internal notification.
+  </p>
+</div>
+
+
       <!-- Project 2 -->
       <div class="project-card">
         <h3>Facebook Lead Form Auto-Nurture</h3>
@@ -512,6 +555,17 @@ footer{
         </p>
       </div>
 
+      <button class="expand-btn">View Full Breakdown</button>
+
+<div class="expand-content">
+  <p><strong>Workflow Logic:</strong></p>
+  <p>
+    Trigger → Condition check → SMS sequence → Wait logic → 
+    Booking link → Reminder flow → Pipeline stage movement → Internal notification.
+  </p>
+</div>
+
+
       <!-- Project 3 -->
       <div class="project-card">
         <h3>Coaching Program Onboarding Workflow</h3>
@@ -526,6 +580,17 @@ footer{
           <strong>Impact:</strong> Reduced admin work and improved client onboarding experience.
         </p>
       </div>
+
+      <button class="expand-btn">View Full Breakdown</button>
+
+<div class="expand-content">
+  <p><strong>Workflow Logic:</strong></p>
+  <p>
+    Trigger → Condition check → SMS sequence → Wait logic → 
+    Booking link → Reminder flow → Pipeline stage movement → Internal notification.
+  </p>
+</div>
+
 
     </div>
   </div>
@@ -572,7 +637,7 @@ footer{
 </footer>
 
 <script>
-const steps = document.querySelectorAll('.step');
+const revealElements = document.querySelectorAll('.step, .project-card');
 
 const observer = new IntersectionObserver(entries => {
   entries.forEach(entry => {
@@ -584,8 +649,46 @@ const observer = new IntersectionObserver(entries => {
   threshold:0.2
 });
 
-steps.forEach(step => observer.observe(step));
+revealElements.forEach(el => observer.observe(el));
+
+const buttons = document.querySelectorAll('.expand-btn');
+
+buttons.forEach(btn => {
+  btn.addEventListener('click', () => {
+    btn.parentElement.classList.toggle('active');
+  });
+});
+  
+const counters = document.querySelectorAll('.number');
+
+counters.forEach(counter => {
+  const update = () => {
+    const target = +counter.getAttribute('data-target');
+    const current = +counter.innerText;
+
+    const increment = target / 40;
+
+    if(current < target){
+      counter.innerText = Math.ceil(current + increment);
+      setTimeout(update, 30);
+    } else {
+      counter.innerText = target;
+    }
+  };
+
+  const counterObserver = new IntersectionObserver(entries => {
+    if(entries[0].isIntersecting){
+      update();
+      counterObserver.disconnect();
+    }
+  });
+
+  counterObserver.observe(counter);
+});
+  
 </script>
+
+
 
 </body>
 </html>
