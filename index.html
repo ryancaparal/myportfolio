@@ -4,95 +4,122 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>Ryan Caparal – GoHighLevel Automations</title>
-<meta name="description" content="GoHighLevel Automation Specialist helping local service businesses turn missed calls and cold leads into booked appointments." />
 
 <style>
 :root {
-  --bg: #0b0f19;
-  --card: rgba(255,255,255,0.05);
-  --text: #f3f4f6;
-  --muted: #9ca3af;
+  --bg: #060b16;
+  --text: #f1f5f9;
+  --muted: #94a3b8;
   --accent: #22c55e;
-  --gradient: linear-gradient(135deg, #22c55e, #06b6d4);
+  --glass: rgba(255,255,255,0.06);
 }
 
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-  scroll-behavior: smooth;
+  font-family: system-ui, -apple-system, sans-serif;
 }
 
 body {
-  background: radial-gradient(circle at top, #0f172a, #020617);
+  background: var(--bg);
   color: var(--text);
-  line-height: 1.6;
+  overflow-x: hidden;
+}
+
+/* 🔥 Animated Background Glow */
+body::before {
+  content: "";
+  position: fixed;
+  width: 800px;
+  height: 800px;
+  background: radial-gradient(circle, rgba(34,197,94,0.25), transparent 70%);
+  top: -200px;
+  left: -200px;
+  animation: floatGlow 12s infinite alternate ease-in-out;
+  z-index: -1;
+}
+
+@keyframes floatGlow {
+  from { transform: translate(0,0); }
+  to { transform: translate(200px,150px); }
+}
+
+/* 🔥 Floating Navbar */
+.navbar {
+  position: fixed;
+  top: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 90%;
+  max-width: 1100px;
+  background: var(--glass);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: 14px;
+  padding: 14px 30px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  z-index: 1000;
+}
+
+.navbar a {
+  color: var(--text);
+  text-decoration: none;
+  margin-left: 20px;
+  font-size: 0.9rem;
+  transition: 0.3s;
+}
+
+.navbar a:hover {
+  color: var(--accent);
 }
 
 section {
   max-width: 1100px;
   margin: auto;
-  padding: 100px 20px;
-}
-
-h1, h2, h3 {
-  letter-spacing: -0.5px;
-}
-
-h1 {
-  font-size: 3rem;
-  margin-bottom: 20px;
-}
-
-h2 {
-  font-size: 2.2rem;
-  text-align: center;
-  margin-bottom: 60px;
-}
-
-p {
-  color: var(--muted);
-}
-
-.hero {
-  text-align: center;
   padding: 120px 20px;
 }
 
+.hero {
+  padding-top: 180px;
+  text-align: center;
+}
+
+.hero h1 {
+  font-size: 3.2rem;
+  margin-bottom: 20px;
+}
+
 .hero p {
-  font-size: 1.2rem;
   max-width: 750px;
-  margin: 20px auto 40px;
+  margin: auto;
+  color: var(--muted);
+  font-size: 1.2rem;
 }
 
 .cta {
   display: inline-block;
+  margin-top: 40px;
   padding: 14px 30px;
+  background: var(--accent);
+  color: #001b14;
   border-radius: 10px;
   font-weight: 600;
   text-decoration: none;
-  margin: 8px;
-  transition: 0.3s ease;
+  transition: 0.3s;
 }
 
-.primary {
-  background: var(--gradient);
-  color: #001b14;
+.cta:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 10px 25px rgba(34,197,94,0.4);
 }
 
-.primary:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 8px 25px rgba(34,197,94,0.4);
-}
-
-.secondary {
-  border: 1px solid #334155;
-  color: var(--text);
-}
-
-.secondary:hover {
-  background: rgba(255,255,255,0.05);
+h2 {
+  text-align: center;
+  font-size: 2.2rem;
+  margin-bottom: 60px;
 }
 
 .grid {
@@ -102,14 +129,11 @@ p {
 }
 
 .card {
-  background: var(--card);
+  background: var(--glass);
+  border: 1px solid rgba(255,255,255,0.08);
   padding: 30px;
   border-radius: 16px;
-  backdrop-filter: blur(12px);
-  border: 1px solid rgba(255,255,255,0.08);
-  transition: 0.4s ease;
-  opacity: 0;
-  transform: translateY(40px);
+  transition: 0.4s;
 }
 
 .card:hover {
@@ -121,82 +145,65 @@ p {
   margin-bottom: 12px;
 }
 
-.fade-in {
-  opacity: 0;
-  transform: translateY(40px);
-  transition: all 0.8s ease;
-}
-
-.fade-in.visible {
-  opacity: 1;
-  transform: translateY(0);
+.card p {
+  color: var(--muted);
 }
 
 footer {
   text-align: center;
-  padding: 50px 20px;
+  padding: 50px;
   color: var(--muted);
-  font-size: 0.9rem;
 }
 </style>
 </head>
 
 <body>
 
+<div class="navbar">
+  <strong>Ryan Caparal</strong>
+  <div>
+    <a href="#automations">Automations</a>
+    <a href="#projects">Projects</a>
+    <a href="case-study.html">Case Study</a>
+    <a href="#contact">Contact</a>
+  </div>
+</div>
+
 <section class="hero">
-  <h1>Ryan Caparal – GoHighLevel Automations</h1>
+  <h1>GoHighLevel Automation Systems<br>For Local Service Businesses</h1>
   <p>
-    I design automation systems inside GoHighLevel that turn missed calls, slow responses, 
-    and cold leads into booked appointments and predictable revenue.
+    I build automation systems that respond instantly, book appointments automatically,
+    and follow up consistently — so you never lose another lead.
   </p>
-  <a href="#contact" class="cta primary">Book a Strategy Call</a>
-  <a href="#projects" class="cta secondary">View Automation Projects</a>
+  <a href="#contact" class="cta">Book a Strategy Call</a>
 </section>
 
-<section>
-  <h2>Automation Systems I Build</h2>
+<section id="automations">
+  <h2>Automation Systems</h2>
   <div class="grid">
-    <div class="card fade-in">
-      <h3>Missed Call Recovery System</h3>
-      <p>Instant SMS responses triggered after missed calls, automatically guiding prospects to book appointments.</p>
+    <div class="card">
+      <h3>Missed Call Recovery</h3>
+      <p>Instant SMS sent after missed calls to recover lost opportunities.</p>
     </div>
-    <div class="card fade-in">
-      <h3>Lead Capture & Smart Routing</h3>
-      <p>Forms, triggers, and pipeline automation that respond within seconds and organize leads properly.</p>
+    <div class="card">
+      <h3>Lead Capture & Routing</h3>
+      <p>Forms and triggers that respond in seconds and assign leads properly.</p>
     </div>
-    <div class="card fade-in">
-      <h3>Booking & Reminder Automation</h3>
-      <p>Calendar booking workflows with automated SMS and email reminders to reduce no-shows.</p>
-    </div>
-    <div class="card fade-in">
-      <h3>Follow-Up & Reactivation</h3>
-      <p>Strategic long-term sequences that revive cold leads and increase lifetime value.</p>
-    </div>
-    <div class="card fade-in">
-      <h3>Pipeline & CRM Logic</h3>
-      <p>Automation-driven stage movement that keeps your CRM clean and predictable.</p>
-    </div>
-    <div class="card fade-in">
-      <h3>Webhooks & Integrations</h3>
-      <p>Connecting GoHighLevel with external tools to create seamless data flow.</p>
+    <div class="card">
+      <h3>Booking & Reminder Workflows</h3>
+      <p>Calendar automation with SMS/email reminders to reduce no-shows.</p>
     </div>
   </div>
 </section>
 
 <section id="projects">
-  <h2>Featured Automation Projects</h2>
+  <h2>Featured Project</h2>
   <div class="grid">
-    <div class="card fade-in">
-      <h3>Local Clinic – Missed Call to Booking</h3>
-      <p>Missed call triggers SMS → booking link → reminder sequence. Result: More appointments without manual follow-up.</p>
-    </div>
-    <div class="card fade-in">
-      <h3>Real Estate – Lead to Pipeline System</h3>
-      <p>Facebook lead → instant SMS/email → pipeline assignment → nurture workflow. Faster response, higher conversions.</p>
-    </div>
-    <div class="card fade-in">
-      <h3>Coach – Funnel to Calendar Automation</h3>
-      <p>Opt-in form → booking link → automated reminders. Higher show-up rate, zero manual scheduling.</p>
+    <div class="card">
+      <h3>Local Clinic Automation System</h3>
+      <p>Missed call → SMS → Booking → Reminder sequence fully automated.</p>
+      <br>
+      <a href="case-study.html" class="cta">View Detailed Case Study</a>
     </div>
   </div>
 </section>
@@ -204,11 +211,11 @@ footer {
 <section id="contact">
   <h2>Let’s Build Your Automation System</h2>
   <div class="grid">
-    <div class="card fade-in">
+    <div class="card">
       <h3>Book a Call</h3>
-      <p>Add your Calendly or GoHighLevel calendar link here.</p>
+      <p>Add your booking link here.</p>
     </div>
-    <div class="card fade-in">
+    <div class="card">
       <h3>Email</h3>
       <p>yourname@email.com</p>
     </div>
@@ -218,20 +225,6 @@ footer {
 <footer>
   © 2026 Ryan Caparal – GoHighLevel Automations
 </footer>
-
-<script>
-const faders = document.querySelectorAll(".fade-in");
-
-const observer = new IntersectionObserver(entries => {
-  entries.forEach(entry => {
-    if (entry.isIntersecting) {
-      entry.target.classList.add("visible");
-    }
-  });
-});
-
-faders.forEach(el => observer.observe(el));
-</script>
 
 </body>
 </html>
