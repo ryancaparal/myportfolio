@@ -1,252 +1,256 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Ryan Caparal – GoHighLevel Automations</title>
 
 <style>
-:root {
-  --bg: #060b16;
-  --text: #f1f5f9;
-  --muted: #94a3b8;
-  --accent: #22c55e;
-  --glass: rgba(255,255,255,0.05);
+:root{
+  --bg:#050914;
+  --text:#f1f5f9;
+  --muted:#94a3b8;
+  --accent1:#22c55e;
+  --accent2:#06b6d4;
 }
 
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  font-family: system-ui, sans-serif;
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  font-family:system-ui, sans-serif;
 }
 
-body {
-  background: var(--bg);
-  color: var(--text);
-  overflow-x: hidden;
+body{
+  background:var(--bg);
+  color:var(--text);
+  overflow-x:hidden;
 }
 
-/* Animated Glow */
-body::before {
-  content: "";
-  position: fixed;
-  width: 900px;
-  height: 900px;
-  background: radial-gradient(circle, rgba(34,197,94,0.2), transparent 70%);
-  top: -200px;
-  left: -200px;
-  animation: floatGlow 14s infinite alternate ease-in-out;
-  z-index: -1;
+/* 🔥 CINEMATIC HERO */
+.hero{
+  height:100vh;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  align-items:center;
+  text-align:center;
+  position:relative;
+  overflow:hidden;
 }
 
-@keyframes floatGlow {
-  from { transform: translate(0,0); }
-  to { transform: translate(250px,180px); }
+.hero::before{
+  content:"";
+  position:absolute;
+  width:1200px;
+  height:1200px;
+  background:radial-gradient(circle, rgba(34,197,94,0.25), transparent 70%);
+  animation:floatHero 12s infinite alternate ease-in-out;
+  z-index:-1;
 }
 
-/* Floating Navbar */
-.navbar {
-  position: fixed;
-  top: 20px;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 90%;
-  max-width: 1100px;
-  background: var(--glass);
-  backdrop-filter: blur(12px);
-  border: 1px solid rgba(255,255,255,0.08);
-  border-radius: 14px;
-  padding: 14px 30px;
-  display: flex;
-  justify-content: space-between;
-  z-index: 1000;
+@keyframes floatHero{
+  from{ transform:translate(-100px,-100px);}
+  to{ transform:translate(200px,150px);}
 }
 
-.navbar a {
-  color: var(--text);
-  text-decoration: none;
-  margin-left: 20px;
-  font-size: 0.9rem;
-  transition: 0.3s;
+.hero h1{
+  font-size:3.5rem;
+  margin-bottom:20px;
+  background:linear-gradient(90deg,var(--accent1),var(--accent2));
+  -webkit-background-clip:text;
+  -webkit-text-fill-color:transparent;
 }
 
-.navbar a:hover {
-  color: var(--accent);
+.hero p{
+  max-width:750px;
+  color:var(--muted);
+  font-size:1.2rem;
 }
 
-section {
-  max-width: 1100px;
-  margin: auto;
-  padding: 140px 20px;
-  position: relative;
+/* 🔥 Dynamic Glow Button */
+.cta{
+  margin-top:40px;
+  padding:16px 36px;
+  border-radius:50px;
+  font-weight:600;
+  text-decoration:none;
+  color:#001b14;
+  background:linear-gradient(90deg,var(--accent1),var(--accent2));
+  position:relative;
+  overflow:hidden;
+  transition:0.3s;
 }
 
-.parallax {
-  transform: translateY(0);
-  transition: transform 0.1s linear;
+.cta::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  background:linear-gradient(120deg,transparent,rgba(255,255,255,0.4),transparent);
+  transform:translateX(-100%);
 }
 
-.hero {
-  padding-top: 200px;
-  text-align: center;
+.cta:hover::before{
+  transform:translateX(100%);
+  transition:0.8s;
 }
 
-.hero h1 {
-  font-size: 3.2rem;
-  margin-bottom: 20px;
+.cta:hover{
+  transform:translateY(-4px);
+  box-shadow:0 15px 35px rgba(34,197,94,0.4);
 }
 
-.hero p {
-  max-width: 750px;
-  margin: auto;
-  color: var(--muted);
-  font-size: 1.2rem;
+/* SECTION */
+section{
+  padding:120px 20px;
+  max-width:1200px;
+  margin:auto;
 }
 
-.cta {
-  display: inline-block;
-  margin-top: 40px;
-  padding: 14px 30px;
-  background: var(--accent);
-  color: #001b14;
-  border-radius: 10px;
-  font-weight: 600;
-  text-decoration: none;
-  transition: 0.3s;
+h2{
+  text-align:center;
+  font-size:2.4rem;
+  margin-bottom:80px;
 }
 
-.cta:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 10px 25px rgba(34,197,94,0.4);
+/* 🔥 HORIZONTAL SVG WORKFLOW */
+.workflow-container{
+  overflow-x:auto;
 }
 
-h2 {
-  text-align: center;
-  font-size: 2.2rem;
-  margin-bottom: 80px;
+svg{
+  width:1200px;
+  height:200px;
 }
 
-.grid {
-  display: grid;
-  gap: 30px;
+.node{
+  fill:#0f172a;
+  stroke:#22c55e;
+  stroke-width:2;
+  rx:25;
 }
 
-.card {
-  background: var(--glass);
-  border: 1px solid rgba(255,255,255,0.08);
-  padding: 30px;
-  border-radius: 16px;
+.node-text{
+  fill:#f1f5f9;
+  font-size:14px;
+  text-anchor:middle;
+  dominant-baseline:middle;
 }
 
-/* 🔥 Workflow Diagram */
-.workflow {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 30px;
+/* Animated line */
+.path{
+  fill:none;
+  stroke:url(#gradientLine);
+  stroke-width:3;
+  stroke-dasharray:8 6;
+  animation:moveLine 3s linear infinite;
 }
 
-.node {
-  background: var(--glass);
-  padding: 20px 40px;
-  border-radius: 40px;
-  border: 1px solid rgba(255,255,255,0.1);
-  position: relative;
-  animation: fadeUp 1s ease forwards;
-  opacity: 0;
+@keyframes moveLine{
+  to{ stroke-dashoffset:-28;}
 }
 
-.node:nth-child(1) { animation-delay: 0.2s; }
-.node:nth-child(2) { animation-delay: 0.4s; }
-.node:nth-child(3) { animation-delay: 0.6s; }
-.node:nth-child(4) { animation-delay: 0.8s; }
-.node:nth-child(5) { animation-delay: 1s; }
-
-@keyframes fadeUp {
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-  from {
-    opacity: 0;
-    transform: translateY(30px);
-  }
+/* 🔥 MICRO INTERACTIONS */
+.card{
+  background:#0f172a;
+  padding:40px;
+  border-radius:20px;
+  transition:0.4s;
+  text-align:center;
+  cursor:pointer;
 }
 
-.connector {
-  width: 2px;
-  height: 40px;
-  background: linear-gradient(to bottom, transparent, var(--accent), transparent);
+.card:hover{
+  transform:translateY(-10px) scale(1.03);
+  box-shadow:0 20px 40px rgba(0,0,0,0.6);
+  border:1px solid rgba(34,197,94,0.4);
 }
 
-/* Footer */
-footer {
-  text-align: center;
-  padding: 60px;
-  color: var(--muted);
+footer{
+  text-align:center;
+  padding:60px;
+  color:var(--muted);
 }
 </style>
 </head>
 
 <body>
 
-<div class="navbar">
-  <strong>Ryan Caparal</strong>
-  <div>
-    <a href="#workflow">Workflow</a>
-    <a href="case-study.html">Case Study</a>
-    <a href="#contact">Contact</a>
-  </div>
-</div>
-
-<section class="hero parallax">
+<!-- 🔥 HERO -->
+<section class="hero">
   <h1>Automation Systems That Convert</h1>
   <p>
-    I build structured GoHighLevel automation workflows that turn missed calls and new leads
-    into predictable booked appointments.
+    I design structured GoHighLevel workflows that instantly respond to leads,
+    book appointments automatically, and create predictable revenue systems.
   </p>
   <a href="#contact" class="cta">Book a Strategy Call</a>
 </section>
 
-<section id="workflow">
-  <h2>Example Workflow System</h2>
+<!-- 🔥 WORKFLOW -->
+<section>
+  <h2>Example Automation Workflow</h2>
+  <div class="workflow-container">
+    <svg viewBox="0 0 1200 200">
 
-  <div class="workflow">
-    <div class="node">Missed Call Trigger</div>
-    <div class="connector"></div>
-    <div class="node">Instant SMS Response</div>
-    <div class="connector"></div>
-    <div class="node">Booking Link Sent</div>
-    <div class="connector"></div>
-    <div class="node">Reminder Sequence</div>
-    <div class="connector"></div>
-    <div class="node">Pipeline Auto-Update</div>
+      <defs>
+        <linearGradient id="gradientLine" x1="0%" y1="0%" x2="100%" y2="0%">
+          <stop offset="0%" stop-color="#22c55e"/>
+          <stop offset="100%" stop-color="#06b6d4"/>
+        </linearGradient>
+      </defs>
+
+      <!-- Connecting Line -->
+      <path class="path" d="M150 100 L1050 100" />
+
+      <!-- Nodes -->
+      <rect class="node" x="50" y="60" width="200" height="80"/>
+      <text class="node-text" x="150" y="100">Missed Call</text>
+
+      <rect class="node" x="300" y="60" width="200" height="80"/>
+      <text class="node-text" x="400" y="100">Instant SMS</text>
+
+      <rect class="node" x="550" y="60" width="200" height="80"/>
+      <text class="node-text" x="650" y="100">Booking Link</text>
+
+      <rect class="node" x="800" y="60" width="200" height="80"/>
+      <text class="node-text" x="900" y="100">Reminder Sequence</text>
+
+      <rect class="node" x="1050" y="60" width="200" height="80"/>
+      <text class="node-text" x="1150" y="100">Pipeline Update</text>
+
+    </svg>
   </div>
 </section>
 
-<section id="contact" class="parallax">
+<!-- 🔥 MICRO INTERACTION SECTION -->
+<section>
+  <h2>What This System Does</h2>
+  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:40px;">
+    <div class="card">
+      <h3>Responds in Seconds</h3>
+      <p>No more waiting hours to contact leads.</p>
+    </div>
+    <div class="card">
+      <h3>Books Automatically</h3>
+      <p>Guides prospects directly to your calendar.</p>
+    </div>
+    <div class="card">
+      <h3>Follows Up Consistently</h3>
+      <p>Structured reminder logic reduces no-shows.</p>
+    </div>
+  </div>
+</section>
+
+<section id="contact">
   <h2>Let’s Build Your Automation System</h2>
-  <div class="card">
-    <p>Add your booking link here.</p>
+  <div style="text-align:center;">
+    <a href="#" class="cta">Schedule a Call</a>
   </div>
 </section>
 
 <footer>
-  © 2026 Ryan Caparal – GoHighLevel Automations
+© 2026 Ryan Caparal – GoHighLevel Automations
 </footer>
-
-<script>
-/* 🔥 Subtle Parallax */
-window.addEventListener("scroll", function () {
-  const parallax = document.querySelectorAll(".parallax");
-  let scrollY = window.scrollY;
-
-  parallax.forEach(section => {
-    section.style.transform = `translateY(${scrollY * -0.05}px)`;
-  });
-});
-</script>
 
 </body>
 </html>
