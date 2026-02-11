@@ -250,6 +250,43 @@ h2{
   color:var(--muted);
   line-height:1.6;
 }
+  
+  /* ================= PROJECTS ================= */
+
+.projects-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+  gap:40px;
+}
+
+.project-card{
+  background:var(--card);
+  padding:40px;
+  border-radius:18px;
+  transition:0.4s;
+  border:1px solid rgba(255,255,255,0.03);
+}
+
+.project-card:hover{
+  transform:translateY(-8px);
+  box-shadow:0 20px 40px rgba(0,0,0,0.5);
+  border:1px solid rgba(34,197,94,0.3);
+}
+
+.project-card h3{
+  margin-bottom:20px;
+}
+
+.project-card p{
+  color:var(--muted);
+  line-height:1.6;
+  margin-bottom:15px;
+}
+
+.impact{
+  margin-top:10px;
+}
+
 
 /* ================= SERVICES ================= */
 
@@ -402,6 +439,67 @@ footer{
     </div>
   </div>
 </section>
+
+  <!-- SELECTED PROJECTS -->
+<section id="projects">
+  <div class="container">
+    <h2>Selected Automation Projects</h2>
+    <p style="text-align:center; color:var(--muted); max-width:700px; margin:0 auto 60px;">
+      A selection of automation systems designed and structured for local service businesses and coaches.
+      Each workflow focuses on speed, conversion, and operational efficiency.
+    </p>
+
+    <div class="projects-grid">
+
+      <!-- Project 1 -->
+      <div class="project-card">
+        <h3>Missed Call Text-Back System</h3>
+        <p class="project-problem">
+          <strong>Problem:</strong> Service businesses were missing inbound calls outside business hours.
+        </p>
+        <p>
+          <strong>Automation Built:</strong> Triggered SMS response within seconds, smart booking link,
+          automated reminders, and pipeline tagging.
+        </p>
+        <p class="impact">
+          <strong>Impact:</strong> Captured after-hours leads and reduced manual follow-up.
+        </p>
+      </div>
+
+      <!-- Project 2 -->
+      <div class="project-card">
+        <h3>Facebook Lead Form Auto-Nurture</h3>
+        <p class="project-problem">
+          <strong>Problem:</strong> Leads from Facebook forms were going cold before manual response.
+        </p>
+        <p>
+          <strong>Automation Built:</strong> Instant SMS + email follow-up, conditional reminders,
+          calendar booking logic, and opportunity creation.
+        </p>
+        <p class="impact">
+          <strong>Impact:</strong> Faster response time and improved booking conversion.
+        </p>
+      </div>
+
+      <!-- Project 3 -->
+      <div class="project-card">
+        <h3>Coaching Program Onboarding Workflow</h3>
+        <p class="project-problem">
+          <strong>Problem:</strong> Manual onboarding emails and payment confirmation tracking.
+        </p>
+        <p>
+          <strong>Automation Built:</strong> Payment trigger → onboarding email sequence →
+          access instructions → task assignment inside pipeline.
+        </p>
+        <p class="impact">
+          <strong>Impact:</strong> Reduced admin work and improved client onboarding experience.
+        </p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
 
 <!-- SERVICES -->
 <section id="services">
